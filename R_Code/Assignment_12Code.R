@@ -1,0 +1,8 @@
+citybike.train <- read.csv("C:/Users/slee2/OneDrive/Data_101/Datasets/citybike.train.csv")
+citybike.test20000 <- read.csv("C:/Users/slee2/OneDrive/Data_101/Datasets/citybike.test20000.csv")
+citybike.train$Day <- as.numeric(substr(citybike.train$starttime, 9, 10))
+citybike.train$Day <- as.numeric(substr(citybike.test20000$starttime, 9, 10))
+tripduration.lm <- lm(tripduration~Day+usertype, data = citybike.train)
+tripduration.lm.predictions <- predict(tripduration.lm, citybike.test20000)
+write.csv(tripduration.lm.predictions,file="sl1768-section4-20000lmpredictions.csv")
+write.csv(tripduration.rpart.predictions,file="sl1768-section4-20000dayusertypepredictions.csv")
